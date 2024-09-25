@@ -50,7 +50,10 @@ function createObstacle() {
         shape: randomShape,
         size: shapeSize
     });
+
+    console.log('Obstacle created:', randomShape, randomX); // Debugging line
 }
+
 
 // Function to draw an obstacle
 function drawObstacle(obstacle) {
