@@ -9,18 +9,13 @@ let playerX = canvas.width / 2;
 let playerY = canvas.height - 100;
 let shapeSize = 50;
 
-// Function to handle shape switching on touch
-function handleTouch(event) {
-    event.preventDefault(); // Prevent default behavior (e.g., scrolling)
-    const touchX = event.touches[0].clientX;
-
-    console.log("Touch detected at X position:", touchX);
-
+// Function to handle shape switching on touch and mouse events
+function handleInput(inputX) {
     // Divide the screen into three zones
-    if (touchX < canvas.width / 3) {
+    if (inputX < canvas.width / 3) {
         currentShape = 'circle'; // Left side of the screen switches to circle
         console.log("Shape changed to circle");
-    } else if (touchX < (canvas.width / 3) * 2) {
+    } else if (inputX < (canvas.width / 3) * 2) {
         currentShape = 'square'; // Middle section switches to square
         console.log("Shape changed to square");
     } else {
@@ -29,8 +24,20 @@ function handleTouch(event) {
     }
 }
 
-// Attach touch event listener to the canvas
-canvas.addEventListener('touchstart', handleTouch);
+// Touch event listener
+canvas.addEventListener('touchstart', (event) => {
+    const touchX = event.touches[0].clientX;
+    console.log("Touch detected at X position:", touchX);
+    handleInput(touchX);
+    event.preventDefault(); // Prevent scrolling
+});
+
+// Mouse event listener for desktop
+canvas.addEventListener('mousedown', (event) => {
+    const clickX = event.clientX;
+    console.log("Mouse click detected at X position:", clickX);
+    handleInput(clickX);
+});
 
 // Game loop
 function gameLoop() {
