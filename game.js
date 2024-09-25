@@ -9,16 +9,22 @@ let playerX = canvas.width / 2;
 let playerY = canvas.height - 100;
 let shapeSize = 50;
 
-// Event listener for key presses to switch shapes
-document.addEventListener('keydown', (event) => {
-    if (event.key === '1') {
-        currentShape = 'circle';
-    } else if (event.key === '2') {
-        currentShape = 'square';
-    } else if (event.key === '3') {
-        currentShape = 'triangle';
+// Function to handle shape switching on touch
+function handleTouch(event) {
+    const touchX = event.touches[0].clientX;
+
+    // Divide the screen into three zones
+    if (touchX < canvas.width / 3) {
+        currentShape = 'circle'; // Left side of the screen switches to circle
+    } else if (touchX < (canvas.width / 3) * 2) {
+        currentShape = 'square'; // Middle section switches to square
+    } else {
+        currentShape = 'triangle'; // Right side switches to triangle
     }
-});
+}
+
+// Attach touch event listener to the canvas
+canvas.addEventListener('touchstart', handleTouch);
 
 // Game loop
 function gameLoop() {
