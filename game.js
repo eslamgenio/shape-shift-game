@@ -54,7 +54,6 @@ function createObstacle() {
     console.log('Obstacle created:', randomShape, randomX); // Debugging line
 }
 
-
 // Function to draw an obstacle
 function drawObstacle(obstacle) {
     ctx.fillStyle = '#ff0000'; // Red color for obstacles
@@ -102,6 +101,7 @@ function gameLoop() {
     // Update and draw obstacles
     obstacles.forEach((obstacle, index) => {
         obstacle.y += obstacleSpeed; // Move obstacle down
+        console.log('Obstacle position:', obstacle.y); // Debugging line
         drawObstacle(obstacle);
         checkCollision(obstacle);
 
