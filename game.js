@@ -10,7 +10,7 @@ let playerY = canvas.height - 100;
 let shapeSize = 50;
 let obstacles = [];
 let gameOver = false;
-let obstacleSpeed = 3;
+let obstacleSpeed = 2; // Slower speed for easier testing
 
 // Function to handle shape switching on touch and mouse events
 function handleInput(inputX) {
@@ -46,7 +46,7 @@ function createObstacle() {
 
     obstacles.push({
         x: randomX,
-        y: 0,
+        y: -shapeSize, // Start above the canvas
         shape: randomShape,
         size: shapeSize
     });
@@ -138,4 +138,4 @@ function drawPlayerShape(shape) {
 gameLoop();
 
 // Create obstacles at regular intervals
-setInterval(createObstacle, 2000); // Create a new obstacle every 2 seconds
+setInterval(createObstacle, 1000); // Create a new obstacle every 1 second
