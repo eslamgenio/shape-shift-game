@@ -11,15 +11,21 @@ let shapeSize = 50;
 
 // Function to handle shape switching on touch
 function handleTouch(event) {
+    event.preventDefault(); // Prevent default behavior (e.g., scrolling)
     const touchX = event.touches[0].clientX;
+
+    console.log("Touch detected at X position:", touchX);
 
     // Divide the screen into three zones
     if (touchX < canvas.width / 3) {
         currentShape = 'circle'; // Left side of the screen switches to circle
+        console.log("Shape changed to circle");
     } else if (touchX < (canvas.width / 3) * 2) {
         currentShape = 'square'; // Middle section switches to square
+        console.log("Shape changed to square");
     } else {
         currentShape = 'triangle'; // Right side switches to triangle
+        console.log("Shape changed to triangle");
     }
 }
 
